@@ -8,9 +8,9 @@ CXX				= g++
 STRIP			= strip
 
 # 编译选项
-CFLAG			= -O3
-CXXFLAG			= -O3 -std=c++11
-LDFLAG			= -lm
+CFLAG			= -O -fsanitize=address
+CXXFLAG			= -O -std=c++11 -fsanitize=address
+LDFLAG			= -lm -fsanitize=address
 
 # 产物及产物路径
 BIN				= app
@@ -21,7 +21,7 @@ BUILD_BIN_DIR	= $(BUILD_DIR)/bin
 # 源文件
 MSRC			+= ./app/src/main.cpp
 # ASRCS
-CXXSRCS			+= ./components/string/myString.cpp
+CXXSRCS			+= ./components/string/src/myString.cpp
 
 # 头文件路径
 CFLAG			+= -I./app/inc
