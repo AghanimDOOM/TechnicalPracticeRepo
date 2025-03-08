@@ -27,6 +27,7 @@ CXXSRCS			+= ./components/string/src/myString.cpp
 CFLAG			+= -I./app/inc
 CXXFLAG			+= -I./app/inc
 CXXFLAG			+= -I./components/string/inc
+CXXFLAG			+= -I./components/template/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk

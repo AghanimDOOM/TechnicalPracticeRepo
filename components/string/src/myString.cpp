@@ -6,11 +6,12 @@
 
 myString::myString():charArry(nullptr)
 {
-
+    std::cout<<"construction func"<<std::endl;
 }
 
 myString::myString(myString& ref):charArry(nullptr)
 {
+    std::cout<<"cpy construction func"<<std::endl;
     int refLen = ref.len();
     if(ref.charArry == nullptr || refLen == 0)
         return;
@@ -24,6 +25,7 @@ myString::myString(myString& ref):charArry(nullptr)
 
 myString::myString(const char* str):charArry(nullptr)
 {
+    std::cout<<"char construction func"<<std::endl;
     int refLen;
     if(str == nullptr)
         return;
@@ -41,10 +43,11 @@ myString::myString(const char* str):charArry(nullptr)
 
 myString::~myString()
 {
+    std::cout<<"destory func"<<std::endl;
     if(charArry == nullptr)
         return;
 
-    delete charArry;
+    delete[] charArry;
     charArry = nullptr;
     return;
 }
