@@ -22,12 +22,14 @@ BUILD_BIN_DIR	= $(BUILD_DIR)/bin
 MSRC			+= ./app/src/main.cpp
 # ASRCS
 CXXSRCS			+= ./components/string/src/myString.cpp
+CXXSRCS			+= ./components/inherit/src/inherit.cpp
 
 # 头文件路径
 CFLAG			+= -I./app/inc
 CXXFLAG			+= -I./app/inc
 CXXFLAG			+= -I./components/string/inc
 CXXFLAG			+= -I./components/template/inc
+CXXFLAG			+= -I./components/inherit/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk
