@@ -32,6 +32,7 @@ CXXFLAG			+= -I./components/string/inc
 CXXFLAG			+= -I./components/template/inc
 CXXFLAG			+= -I./components/inherit/inc
 CXXFLAG			+= -I./components/singleton/inc
+CXXFLAG			+= -I./components/decorator/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk

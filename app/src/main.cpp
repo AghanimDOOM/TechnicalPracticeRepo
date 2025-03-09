@@ -8,6 +8,7 @@
 #include "myString.h"
 #include "inherit.h"
 #include "singleton.h"
+#include "decorator.h"
 
 void static_cast_test(char c)
 {
@@ -135,7 +136,22 @@ void singleton_test()
     pl->print_cnt();
 }
 
+void decorator_test()
+{
+    component* myText = new text();
+    component* myButton = new button();
+    component* mySlider = new slider(myText);
+    component* myColor = new color(mySlider);
+
+    myColor->display();
+
+    delete myText;
+    delete myButton;
+    delete mySlider;
+    delete myColor;
+}
+
 int main()
 {
-    singleton_test();
+    decorator_test();
 }
