@@ -23,6 +23,7 @@ MSRC			+= ./app/src/main.cpp
 # ASRCS
 CXXSRCS			+= ./components/string/src/myString.cpp
 CXXSRCS			+= ./components/inherit/src/inherit.cpp
+CXXSRCS			+= ./components/singleton/src/singleton.cpp
 
 # 头文件路径
 CFLAG			+= -I./app/inc
@@ -30,6 +31,7 @@ CXXFLAG			+= -I./app/inc
 CXXFLAG			+= -I./components/string/inc
 CXXFLAG			+= -I./components/template/inc
 CXXFLAG			+= -I./components/inherit/inc
+CXXFLAG			+= -I./components/singleton/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk

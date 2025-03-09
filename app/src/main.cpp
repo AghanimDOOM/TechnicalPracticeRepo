@@ -7,6 +7,7 @@
 #include "template.h"
 #include "myString.h"
 #include "inherit.h"
+#include "singleton.h"
 
 void static_cast_test(char c)
 {
@@ -111,7 +112,30 @@ void inherit_test()
     std::cout<<"typeid(derive) name is "<<typeid(derive).name()<<std::endl;
 }
 
+void singleton_test()
+{
+    std::cout<<"hungry singleton:"<<std::endl;
+    hungry* ph = hungry::get_instance();
+
+    ph->print_name();
+    ph->print_cnt();
+    ph->print_name();
+    ph->print_cnt();
+    ph->print_name();
+    ph->print_cnt();
+
+    std::cout<<"lazy singleton:"<<std::endl;
+    lazy* pl = lazy::get_instance();
+
+    pl->print_name();
+    pl->print_cnt();
+    pl->print_name();
+    pl->print_cnt();
+    pl->print_name();
+    pl->print_cnt();
+}
+
 int main()
 {
-    inherit_test();
+    singleton_test();
 }
