@@ -9,6 +9,7 @@
 #include "inherit.h"
 #include "singleton.h"
 #include "decorator.h"
+#include "iterator.h"
 
 void static_cast_test(char c)
 {
@@ -151,7 +152,44 @@ void decorator_test()
     delete myColor;
 }
 
+void iterator_test()
+{
+    std::string v1 = "第一个字符串！";
+    std::string v2 = "第二个字符串！";
+    std::string v3 = "第三个字符串！";
+
+    std::cout<<"container test:"<<std::endl;
+    container<std::string> myContainer;
+    myContainer.print_container();
+
+    myContainer.add(v1);
+    myContainer.add(v2);
+    myContainer.add(v3);
+    myContainer.print_container();
+
+    myContainer.remove();
+    myContainer.print_container();
+
+    myContainer.clear();
+    myContainer.print_container();
+
+    std::cout<<"iterator test:"<<std::endl;
+    myContainer.add(v1);
+    myContainer.add(v2);
+    myContainer.add(v3);
+    myContainer.print_container();
+
+    if(myContainer.begin() != myContainer.end()){
+        for(auto i = myContainer.begin(); i != myContainer.end(); i++){
+            std::cout<<*i<<std::endl;
+        }
+    }
+
+    myContainer.clear();
+    myContainer.print_container();
+}
+
 int main()
 {
-    decorator_test();
+    iterator_test();
 }

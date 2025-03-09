@@ -8,9 +8,9 @@ CXX				= g++
 STRIP			= strip
 
 # 编译选项
-CFLAG			= -O -fsanitize=address
-CXXFLAG			= -O -std=c++11 -fsanitize=address
-LDFLAG			= -lm -fsanitize=address
+CFLAG			= -O -fsanitize=address -g
+CXXFLAG			= -O -std=c++11 -fsanitize=address -g
+LDFLAG			= -lm -fsanitize=address -g
 
 # 产物及产物路径
 BIN				= app
@@ -33,6 +33,7 @@ CXXFLAG			+= -I./components/template/inc
 CXXFLAG			+= -I./components/inherit/inc
 CXXFLAG			+= -I./components/singleton/inc
 CXXFLAG			+= -I./components/decorator/inc
+CXXFLAG			+= -I./components/iterator/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk
@@ -70,10 +71,10 @@ $(BUILD_OBJ_DIR)/%.o: %.cpp
 default: $(TARGET)
 	@mkdir -p $(BUILD_BIN_DIR)
 	@$(CXX) -o $(BUILD_BIN_DIR)/$(BIN) $(TARGET) $(LDFLAG)
-	@$(STRIP) --strip-debug $(BUILD_BIN_DIR)/$(BIN)
+	# @$(STRIP) --strip-debug $(BUILD_BIN_DIR)/$(BIN)
 
 clean:
-	rm -rf $(BUILD_DIR) $(BUILD_BIN_DIR)$(BIN)
+	rm -rf $(BUILD_DIR) $(BUILD_BIN_DIR)/$(BIN)
 
 print:
 	@echo "--------------------"
