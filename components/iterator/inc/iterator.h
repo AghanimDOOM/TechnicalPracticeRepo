@@ -15,64 +15,67 @@ struct var{
 template<class T>
 class container{
 private:
-    var<T>* p;
+    var<T>* pfirst;
+    var<T>* plast;
 public:
-    container():p(nullptr){}
+    container():pfirst(nullptr),plast(nullptr){}
     void add(T& v){
         var<T>* n = new var<T>();
         n->val = v;
-        if(p == nullptr) {
-            p = n;
-            p->next = nullptr;
-            p->pre = nullptr;
+        if(pfirst == nullptr) {
+            pfirst = n;
+            pfirst->next = nullptr;
+            pfirst->pre = nullptr;
+            plast = pfirst;
         }else{
-            var<T>* tmp = p;
-            while(tmp->next != nullptr){tmp = tmp->next;};
-            tmp->next = n;
-            n->pre = tmp;
+            plast->next = n;
+            n->pre = plast;
             n->next = nullptr;
+            plast = n;
         }
     };
     void remove(){
-        if(p == nullptr){
+        if(pfirst == nullptr){
             std::cout<<"empty container"<<std::endl;
             return;
         }
-        var<T>* tmp = p;
-        while(tmp->next != nullptr){tmp = tmp->next;};
-        (tmp->pre)->next = nullptr;
-        delete tmp;
+        if(pfirst == plast){
+            delete plast;
+            pfirst = plast = nullptr;
+        } else {
+            var<T>* t = plast->pre;
+            t->next = nullptr;
+            delete plast;
+            plast = t;
+        }
     };
     void clear(){
-        if(p == nullptr){
+        if(pfirst == nullptr){
             std::cout<<"empty container"<<std::endl;
             return;
         }
-        var<T>* tmp = p;
+        var<T>* tmp = pfirst;
         while(tmp->next != nullptr){
             tmp = tmp->next;
             delete tmp->pre;
             tmp->pre = nullptr;
-            p = tmp;
         };
         delete tmp;
-        p = nullptr;
+        pfirst = plast = nullptr;
     };
     void print_container(){
-        if(p == nullptr){
+        if(pfirst == nullptr){
             std::cout<<"empty container"<<std::endl;
             return;
         }
-        var<T>* tmp = p;
-        std::cout<<"container var is "<<tmp->val<<std::endl;
-        while(tmp->next != nullptr){
-            tmp = tmp->next;
+        var<T>* tmp = pfirst;
+        do{
             std::cout<<"container var is "<<tmp->val<<std::endl;
-        };
+        }while((tmp = tmp->next) != nullptr);
     };
-    bool empty(){if(p == nullptr)return true; else return false;};
+    bool empty(){if(pfirst == nullptr)return true; else return false;};
     iterator<T> begin(){
-        return iterator<T>(this, p);
+        return iterator<T>(this, pfirst);
     };
     iterator<T> end(){
         return iterator<T>(this, nullptr);

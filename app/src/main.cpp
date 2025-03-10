@@ -235,5 +235,5 @@ void iterator_test()
 
 int main()
 {
-    class_test();
+    iterator_test();
 }
