@@ -135,6 +135,16 @@ void singleton_test()
     pl->print_cnt();
     pl->print_name();
     pl->print_cnt();
+
+    std::cout<<"new lazy singleton:"<<std::endl;
+    newlazy* pnl = newlazy::get_instance();
+
+    pnl->print_name();
+    pnl->print_cnt();
+    pnl->print_name();
+    pnl->print_cnt();
+    pnl->print_name();
+    pnl->print_cnt();
 }
 
 void decorator_test()
@@ -191,5 +201,5 @@ void iterator_test()
 
 int main()
 {
-    iterator_test();
+    singleton_test();
 }

@@ -33,4 +33,16 @@ void print_name();
 void print_cnt();
 };
 
+class newlazy{
+private:
+newlazy();
+~newlazy()=delete;
+static newlazy* instance;
+static singleton val;
+public:
+static newlazy* get_instance();
+void print_name();
+void print_cnt();
+};
+
 #endif
