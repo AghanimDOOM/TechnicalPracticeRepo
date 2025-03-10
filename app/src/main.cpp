@@ -10,6 +10,39 @@
 #include "singleton.h"
 #include "decorator.h"
 #include "iterator.h"
+#include <utility>
+
+void class_test()
+{
+    std::cout<<"类基本测试："<<std::endl;
+    myString str1 = "这是第一个类";
+    myString str2 = "这是第二个类";
+    myString str3 = "这是第三个类";
+
+    std::cout<<str1<<std::endl;
+    std::cout<<str2<<std::endl;
+    std::cout<<str3<<std::endl;
+
+    std::cout<<"类拷贝构造&类拷贝赋值："<<std::endl;
+    myString str4(str1);
+    std::cout<<str4<<std::endl;
+    str4 = str2;
+    std::cout<<str4<<std::endl;
+
+    myString str5 = std::move(str1);
+    std::cout<<str1<<std::endl;
+    std::cout<<str2<<std::endl;
+    std::cout<<str3<<std::endl;
+    std::cout<<str4<<std::endl;
+    std::cout<<str5<<std::endl;
+
+    str5 = std::move(str2);
+    std::cout<<str1<<std::endl;
+    std::cout<<str2<<std::endl;
+    std::cout<<str3<<std::endl;
+    std::cout<<str4<<std::endl;
+    std::cout<<str5<<std::endl;
+}
 
 void static_cast_test(char c)
 {
@@ -202,5 +235,5 @@ void iterator_test()
 
 int main()
 {
-    iterator_test();
+    class_test();
 }

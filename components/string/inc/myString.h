@@ -7,10 +7,12 @@ class myString{
 public:
     myString();
     myString(myString& ref);
+    myString(myString&& ref);
     myString(const char* str);
     ~myString();
 
     myString& operator=(myString& ref);
+    myString& operator=(myString&& ref);
     myString& operator=(const char* str);
 
     int len();
