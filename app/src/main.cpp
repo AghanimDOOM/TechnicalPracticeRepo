@@ -191,6 +191,7 @@ void iterator_test()
 
     if(myContainer.begin() != myContainer.end()){
         for(auto i = myContainer.begin(); i != myContainer.end(); i++){
+            *i = "添加prefix: " + *i;
             std::cout<<*i<<std::endl;
         }
     }
@@ -201,5 +202,5 @@ void iterator_test()
 
 int main()
 {
-    singleton_test();
+    iterator_test();
 }

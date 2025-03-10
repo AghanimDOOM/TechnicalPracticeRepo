@@ -18,7 +18,7 @@ private:
     var<T>* p;
 public:
     container():p(nullptr){}
-    void add(T v){
+    void add(T& v){
         var<T>* n = new var<T>();
         n->val = v;
         if(p == nullptr) {
@@ -118,7 +118,7 @@ public:
             this->p = this->p->next;
         return t;
     };
-    T operator*(){
+    T& operator*(){
         std::cout<<"T operator*()"<<std::endl;
         return p->val;
     };
