@@ -125,6 +125,10 @@ public:
         std::cout<<"T operator*()"<<std::endl;
         return p->val;
     };
+    T* operator->(){
+        std::cout<<"T* operator->()"<<std::endl;
+        return &(p->val);
+    };
     bool operator==(iterator& other){
         std::cout<<"bool operator==(iterator& other)"<<std::endl;
         if(this == &other) return true;

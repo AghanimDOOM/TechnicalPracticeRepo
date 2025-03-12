@@ -232,10 +232,22 @@ void iterator_test()
 
     myContainer.clear();
     myContainer.print_container();
+
+    myContainer.add(v1);
+    myContainer.add(v2);
+    myContainer.add(v3);
+    myContainer.print_container();
+
+    auto myIterator = myContainer.begin();
+    myIterator->insert(myIterator->begin(), 'a');
+    myContainer.print_container();
+
+    myContainer.clear();
+    myContainer.print_container();
 }
 
 int main()
 {
-    // iterator_test();
-    vector_test();
+    iterator_test();
+    // vector_test();
 }
