@@ -248,6 +248,5 @@ void iterator_test()
 
 int main()
 {
-    iterator_test();
-    // vector_test();
+    vector_test();
 }
