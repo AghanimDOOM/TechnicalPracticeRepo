@@ -6,7 +6,7 @@
 #include <queue>
 #include <set>
 #include <stack>
-#include <stack>
+#include <unordered_set>
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
@@ -121,6 +121,86 @@ void vector_test()
         std::replace_if(myVector.begin(), myVector.end(), std::not1(std::bind2nd(std::less<int>(), 250)), 400);
         for(auto val : myVector){
             std::cout<<"after replace_if: "<<val<<std::endl;
+        }
+    }
+}
+
+void set_test()
+{
+    // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
+
+    // 初始化
+    std::set<int> myset = {-9, 10, 60, 67, 34, 98, 18};
+    for(auto val : myset){
+        std::cout<<"init: "<<val<<std::endl;
+    }
+
+    // insert
+    for(int32_t i = 0; i < 10; i++){
+        myset.insert(rand()&0xff);
+    }
+    for(auto val : myset){
+        std::cout<<"insert: "<<val<<std::endl;
+    }
+
+    // lower_bound
+    {
+        int findVal = 123;
+        auto findIterator = myset.lower_bound(findVal);
+        if(findIterator != myset.end()){
+            std::cout<<"lower_bound: "<<findVal<<" not end"<<std::endl;
+        } else {
+            std::cout<<"lower_bound: "<<findVal<<" end"<<std::endl;
+        }
+    }
+
+    // upper_bound
+    {
+        int findVal = 124;
+        auto findIterator = myset.upper_bound(findVal);
+        if(findIterator != myset.end()){
+            std::cout<<"upper_bound: "<<findVal<<" not end"<<std::endl;
+        } else {
+            std::cout<<"upper_bound: "<<findVal<<" end"<<std::endl;
+        }
+    }
+}
+
+void map_test()
+{
+    // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
+
+    // 初始化
+    std::map<int, std::string> myMap;
+    // insert
+    for(int32_t i = 0; i < 10; i++){
+        char randChar[10] = {0};
+        snprintf(randChar, 10, "%d", rand()&0xff);
+        myMap.insert(std::pair<int, std::string>(i, std::string(randChar)));
+    }
+    for(auto val : myMap){
+        std::cout<<"insert: key["<<val.first<<"], val["<<val.second<<"]"<<std::endl;
+    }
+
+    // lower_bound
+    {
+        int findVal = 123;
+        auto findIterator = myMap.lower_bound(findVal);
+        if(findIterator != myMap.end()){
+            std::cout<<"lower_bound: "<<findVal<<" not end"<<std::endl;
+        } else {
+            std::cout<<"lower_bound: "<<findVal<<" end"<<std::endl;
+        }
+    }
+
+    // upper_bound
+    {
+        int findVal = 124;
+        auto findIterator = myMap.upper_bound(findVal);
+        if(findIterator != myMap.end()){
+            std::cout<<"upper_bound: "<<findVal<<" not end"<<std::endl;
+        } else {
+            std::cout<<"upper_bound: "<<findVal<<" end"<<std::endl;
         }
     }
 }

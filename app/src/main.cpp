@@ -249,4 +249,6 @@ void iterator_test()
 int main()
 {
     vector_test();
+    set_test();
+    map_test();
 }
