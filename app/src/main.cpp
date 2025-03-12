@@ -11,6 +11,7 @@
 #include "decorator.h"
 #include "iterator.h"
 #include <utility>
+#include "stl.h"
 
 void class_test()
 {
@@ -235,5 +236,6 @@ void iterator_test()
 
 int main()
 {
-    iterator_test();
+    // iterator_test();
+    vector_test();
 }
