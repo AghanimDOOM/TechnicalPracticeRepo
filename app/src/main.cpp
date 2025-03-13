@@ -14,6 +14,7 @@
 #include "iterator.h"
 #include "stl.h"
 #include "smart_point.h"
+#include "thread_mutex.h"
 
 void class_test()
 {
@@ -250,7 +251,5 @@ void iterator_test()
 
 int main()
 {
-    unique_ptr_test();
-    shared_ptr_test();
-    unique_ptr_return_test();
+    thread_mutex_test();
 }
