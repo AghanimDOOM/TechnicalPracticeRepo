@@ -4,14 +4,16 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <utility>
+
 #include "template.h"
 #include "myString.h"
 #include "inherit.h"
 #include "singleton.h"
 #include "decorator.h"
 #include "iterator.h"
-#include <utility>
 #include "stl.h"
+#include "smart_point.h"
 
 void class_test()
 {
@@ -248,8 +250,7 @@ void iterator_test()
 
 int main()
 {
-    vector_test();
-    set_test();
-    map_test();
-    unordered_map_test();
+    unique_ptr_test();
+    shared_ptr_test();
+    unique_ptr_return_test();
 }

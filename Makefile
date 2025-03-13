@@ -25,6 +25,7 @@ CXXSRCS			+= ./components/string/src/myString.cpp
 CXXSRCS			+= ./components/inherit/src/inherit.cpp
 CXXSRCS			+= ./components/singleton/src/singleton.cpp
 CXXSRCS			+= ./components/stl/src/stl.cpp
+CXXSRCS			+= ./components/smart_point/src/smart_point.cpp
 
 # 头文件路径
 CFLAG			+= -I./app/inc
@@ -36,6 +37,7 @@ CXXFLAG			+= -I./components/singleton/inc
 CXXFLAG			+= -I./components/decorator/inc
 CXXFLAG			+= -I./components/iterator/inc
 CXXFLAG			+= -I./components/stl/inc
+CXXFLAG			+= -I./components/smart_point/inc
 
 # 第三方软件
 # include ./lvgl/lvgl.mk
