@@ -251,4 +251,5 @@ int main()
     vector_test();
     set_test();
     map_test();
+    unordered_map_test();
 }

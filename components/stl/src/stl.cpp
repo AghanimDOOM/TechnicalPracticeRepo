@@ -17,6 +17,8 @@ void vector_test()
 {
     // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
 
+    std::cout<<"----- vector_test -----"<<std::endl;
+
     // 初始化
     std::vector<int> myVector = {-9, 10, 60, 67, 34, 98, 18};
     for(auto val : myVector){
@@ -44,7 +46,6 @@ void vector_test()
     }
 
     // clear & init
-    std::cout<<"----- myVect Clear & reinit -----"<<std::endl;
     myVector.clear();
     for(int32_t i = 0; i < 10; i++){
         myVector.push_back(rand()&0xff);
@@ -129,6 +130,8 @@ void set_test()
 {
     // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
 
+    std::cout<<"----- set_test -----"<<std::endl;
+
     // 初始化
     std::set<int> myset = {-9, 10, 60, 67, 34, 98, 18};
     for(auto val : myset){
@@ -141,6 +144,17 @@ void set_test()
     }
     for(auto val : myset){
         std::cout<<"insert: "<<val<<std::endl;
+    }
+
+    // find
+    {
+        int findVal = 123;
+        auto findIterator = myset.find(findVal);
+        if(findIterator != myset.end()){
+            std::cout<<"find: 123 found"<<std::endl;
+        } else {
+            std::cout<<"find: 123 not found"<<std::endl;
+        }
     }
 
     // lower_bound
@@ -170,6 +184,8 @@ void map_test()
 {
     // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
 
+    std::cout<<"----- map_test -----"<<std::endl;
+
     // 初始化
     std::map<int, std::string> myMap;
     // insert
@@ -182,9 +198,20 @@ void map_test()
         std::cout<<"insert: key["<<val.first<<"], val["<<val.second<<"]"<<std::endl;
     }
 
+    // find
+    {
+        int findVal = 7;
+        auto findIterator = myMap.find(findVal);
+        if(findIterator != myMap.end()){
+            std::cout<<"find: found; key is : "<<findIterator->first<<"; val is : "<<findIterator->second<<std::endl;
+        } else {
+            std::cout<<"find: not found"<<std::endl;
+        }
+    }
+
     // lower_bound
     {
-        int findVal = 123;
+        int findVal = 6;
         auto findIterator = myMap.lower_bound(findVal);
         if(findIterator != myMap.end()){
             std::cout<<"lower_bound: "<<findVal<<" not end"<<std::endl;
@@ -195,12 +222,42 @@ void map_test()
 
     // upper_bound
     {
-        int findVal = 124;
+        int findVal = 3;
         auto findIterator = myMap.upper_bound(findVal);
         if(findIterator != myMap.end()){
             std::cout<<"upper_bound: "<<findVal<<" not end"<<std::endl;
         } else {
             std::cout<<"upper_bound: "<<findVal<<" end"<<std::endl;
+        }
+    }
+}
+
+void unordered_map_test()
+{
+    // 初始化、push_back、insert、默认sort、sort with lambda cmp func、sort with cmp class、find、binary_search、lower_bound、upper_bound、replace、replace_if、countif、countif with func adapter；
+
+    std::cout<<"----- unordered_map_test -----"<<std::endl;
+
+    // 初始化
+    std::unordered_map<int, std::string> myMap;
+    // insert
+    for(int32_t i = 0; i < 10; i++){
+        char randChar[10] = {0};
+        snprintf(randChar, 10, "%d", rand()&0xff);
+        myMap.insert(std::pair<int, std::string>(i, std::string(randChar)));
+    }
+    for(auto val : myMap){
+        std::cout<<"insert: key["<<val.first<<"], val["<<val.second<<"]"<<std::endl;
+    }
+
+    // find
+    {
+        int findVal = 9;
+        auto findIterator = myMap.find(findVal);
+        if(findIterator != myMap.end()){
+            std::cout<<"find: found; key is : "<<findIterator->first<<"; val is : "<<findIterator->second<<std::endl;
+        } else {
+            std::cout<<"find: not found"<<std::endl;
         }
     }
 }

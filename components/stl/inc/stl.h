@@ -4,5 +4,6 @@
 void vector_test();
 void set_test();
 void map_test();
+void unordered_map_test();
 
 #endif
