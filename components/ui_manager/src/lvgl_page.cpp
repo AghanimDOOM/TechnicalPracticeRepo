@@ -2,6 +2,7 @@
 #include <string>
 
 #include "lvgl_ui.h"
+#include "lvgl.h"
 
 lvglPage::lvglPage(lvglPageLoadType type, char* name):pageType(type)
 {

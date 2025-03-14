@@ -3,6 +3,7 @@
 #include <string>
 
 #include "lvgl_ui.h"
+#include "lvgl.h"
 
 std::recursive_mutex lvglManager::lvglMutex;
 bool lvglManager::initFlg;

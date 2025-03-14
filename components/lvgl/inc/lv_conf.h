@@ -773,7 +773,7 @@
 #define LV_USE_LODEPNG 0
 
 /*PNG decoder(libpng) library*/
-#define LV_USE_LIBPNG 1
+#define LV_USE_LIBPNG 0
 
 /*BMP decoder library*/
 #define LV_USE_BMP 1
@@ -784,7 +784,7 @@
 
 /* libjpeg-turbo decoder library.
  * Supports complete JPEG specifications and high-performance JPEG decoding. */
-#define LV_USE_LIBJPEG_TURBO 1
+#define LV_USE_LIBJPEG_TURBO 0
 
 /*GIF decoder library*/
 #define LV_USE_GIF 1
@@ -807,7 +807,7 @@
 #define LV_USE_BARCODE 1
 
 /*FreeType library*/
-#define LV_USE_FREETYPE 1
+#define LV_USE_FREETYPE 0
 #if LV_USE_FREETYPE
     /*Let FreeType to use LVGL memory and file porting*/
     #define LV_FREETYPE_USE_LVGL_PORT 0
@@ -972,7 +972,7 @@
 #endif
 
 /*Use X11 to open window on Linux desktop and handle mouse and keyboard*/
-#define LV_USE_X11              1
+#define LV_USE_X11              0
 #if LV_USE_X11
     #define LV_X11_DIRECT_EXIT         1  /*Exit the application when all X11 windows have been closed*/
     #define LV_X11_DOUBLE_BUFFER       1  /*Use double buffers for rendering*/
@@ -1020,7 +1020,7 @@
 #endif
 
 /*Driver for /dev/dri/card*/
-#define LV_USE_LINUX_DRM        0
+#define LV_USE_LINUX_DRM        1
 
 /*Interface for TFT_eSPI*/
 #define LV_USE_TFT_ESPI         0
@@ -1073,7 +1073,7 @@
 *==================*/
 
 /*Enable the examples to be built with the library*/
-#define LV_BUILD_EXAMPLES 1
+#define LV_BUILD_EXAMPLES 0
 
 /*===================
  * DEMO USAGE
