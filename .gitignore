@@ -1,0 +1,5 @@
+# 产物
+build/
+
+# vscode
+.vscode/
