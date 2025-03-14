@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 
 #include "lvgl_ui.h"
 
@@ -28,5 +29,9 @@ int main()
     uiManager.ui_goto_last_page();
     uiManager.ui_goto_last_page();
     uiManager.ui_goto_last_page();
+
+    while(1){
+        sleep(10);
+    }
 }
 

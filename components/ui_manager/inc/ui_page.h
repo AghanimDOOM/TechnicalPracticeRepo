@@ -7,7 +7,7 @@ class uiPage{
 protected:
     std::string pageName;
 public:
-    virtual ~uiPage(){};
+    virtual ~uiPage() = default;
     virtual std::string& get_page_name() = 0;
     virtual void page_load() = 0;
     virtual void page_unload() = 0;

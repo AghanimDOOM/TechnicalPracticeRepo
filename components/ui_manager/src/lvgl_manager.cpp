@@ -1,14 +1,28 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <pthread.h>
+#include <unistd.h>
 
 #include "lvgl_ui.h"
 #include "lvgl.h"
 
-std::recursive_mutex lvglManager::lvglMutex;
+std::recursive_mutex lvglManager::lvglMngMutex;
+pthread_t lvglManager::tid;
 bool lvglManager::initFlg;
 std::list<uiPage*> lvglManager::pageList;
 std::list<uiPage*> lvglManager::pageStack;
+
+lvglManager::~lvglManager()
+{
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
+    initFlg = false;
+    pageStack.clear();
+    for(auto item : pageList){
+        delete item;
+    }
+    pageList.clear();
+}
 
 lvglManager& lvglManager::lvgl_mng_get_instance()
 {
@@ -16,23 +30,44 @@ lvglManager& lvglManager::lvgl_mng_get_instance()
     return instance;
 }
 
+void* lvgl_fun(void* arg)
+{
+    while(1){
+        lv_timer_handler();
+        usleep(5000);
+    }
+}
+
 void lvglManager::ui_init()
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
+
+    // lvgl init
+    lv_init();
+
+    // lvgl display init
+    lv_linux_disp_init();
+
+    // 创建第一个窗口
+    lv_disp_t* disp = lv_disp_get_default();
+    std::cout<<"disp hor is : "<<lv_disp_get_hor_res(disp)<<". ver is : "<<lv_disp_get_ver_res(disp)<<std::endl;
+
+    pthread_create(&tid,NULL,lvgl_fun,NULL);
+
     initFlg = true;
     std::cout<<"lvglManager init"<<std::endl;
 }
 
 void lvglManager::ui_uninit()
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     initFlg = false;
     std::cout<<"lvglManager uninit"<<std::endl;
 }
 
 void lvglManager::lvgl_mng_scan_all_page()
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager scan page: lvgl need init"<<std::endl;
         return;
@@ -45,7 +80,7 @@ void lvglManager::lvgl_mng_scan_all_page()
 
 void lvglManager::lvgl_mng_scan_stack()
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager scan stack: lvgl need init"<<std::endl;
         return;
@@ -58,7 +93,7 @@ void lvglManager::lvgl_mng_scan_stack()
 
 void lvglManager::ui_page_add(uiPage* p)
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager page add: lvgl need init"<<std::endl;
         return;
@@ -70,7 +105,7 @@ void lvglManager::ui_page_add(uiPage* p)
 
 void lvglManager::ui_page_del(uiPage* p)
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager page del: lvgl need init"<<std::endl;
         return;
@@ -81,7 +116,7 @@ void lvglManager::ui_page_del(uiPage* p)
 
 void lvglManager::ui_page_del(char* pageName)
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager page del: lvgl need init"<<std::endl;
         return;
@@ -99,7 +134,7 @@ void lvglManager::ui_page_del(char* pageName)
 
 void lvglManager::ui_mng_stack_clear()
 {
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager stack clear: lvgl need init"<<std::endl;
         return;
@@ -112,7 +147,7 @@ void lvglManager::ui_goto_page_with_stack(uiPage* p)
 {
     lvglPage* currentPage;
     lvglPage* newPage;
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager goto with stack: lvgl need init"<<std::endl;
         return;
@@ -133,7 +168,7 @@ void lvglManager::ui_goto_page_with_stack(char* pageName)
 {
     lvglPage* currentPage;
     lvglPage* newPage;
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager goto with stack: lvgl need init"<<std::endl;
         return;
@@ -159,7 +194,7 @@ void lvglManager::ui_goto_last_page()
 {
     lvglPage* currentPage;
     lvglPage* lastPage;
-    std::lock_guard<std::recursive_mutex> lock(lvglMutex);
+    std::lock_guard<std::recursive_mutex> lock(lvglMngMutex);
     if(!initFlg){
         std::cout<<"lvglManager goto last: lvgl need init"<<std::endl;
         return;

@@ -6,6 +6,7 @@
 
 class uiManager{
 public:
+    virtual ~uiManager() = default;
     virtual void ui_init() = 0;
     virtual void ui_uninit() = 0;
     virtual void ui_page_add(uiPage* p) = 0;

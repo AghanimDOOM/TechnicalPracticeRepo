@@ -7,6 +7,8 @@
 lvglPage::lvglPage(lvglPageLoadType type, char* name):pageType(type)
 {
     pageName = name;
+    lv_obj_t* screen = lv_obj_create(NULL);
+
     std::cout<<"lvgl page construct"<<std::endl;
 }
 

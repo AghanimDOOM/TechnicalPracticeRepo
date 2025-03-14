@@ -6,6 +6,7 @@
 #include <memory>
 #include <iostream>
 #include <string>
+#include <pthread.h>
 
 #include "ui_page.h"
 #include "ui_manager.h"
@@ -33,12 +34,13 @@ public:
 
 class lvglManager : public uiManager{
 private:
-    static std::recursive_mutex lvglMutex;
+    static std::recursive_mutex lvglMngMutex;
+    static pthread_t tid;
     static bool initFlg;
     static std::list<uiPage*> pageList;
     static std::list<uiPage*> pageStack;
     lvglManager() = default;
-    ~lvglManager()= default;
+    ~lvglManager();
 public:
     lvglManager(lvglManager&) = delete;
     lvglManager(lvglManager&&) = delete;
@@ -57,5 +59,13 @@ public:
     virtual void ui_goto_page_with_stack(char* pageName);
     virtual void ui_goto_last_page();
 };
+
+#ifdef __cplusplus
+extern "C"{
+#endif
+void lv_linux_disp_init(void);
+#ifdef __cplusplus
+}
+#endif
 
 #endif
