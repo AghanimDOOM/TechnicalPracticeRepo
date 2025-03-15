@@ -137,6 +137,7 @@ void lvglManager::ui_goto_page_with_stack(uiPage* p)
     }
     newPage = dynamic_cast<lvglPage*>(p);
     std::cout<<"new page name is : "<<*(newPage)<<std::endl;
+    lv_screen_load_anim(newPage->lvgl_get_page(), LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
     newPage->page_load();
     pageStack.push_back(p);
 }
@@ -161,8 +162,10 @@ void lvglManager::ui_goto_page_with_stack(char* pageName)
         if(pageNameStr == (*i)->get_page_name()){
             newPage = dynamic_cast<lvglPage*>(*i);
             std::cout<<"new page name is : "<<*(newPage)<<std::endl;
+            lv_screen_load_anim(newPage->lvgl_get_page(), LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
             newPage->page_load();
             pageStack.push_back(newPage);
+            break;
         }
     }
 }
@@ -186,6 +189,7 @@ void lvglManager::ui_goto_last_page()
         pageStack.pop_back();
         lastPage = dynamic_cast<lvglPage*>(*pageStack.rbegin());
         std::cout<<"last page name is : "<<*(lastPage)<<std::endl;
+        lv_screen_load_anim(lastPage->lvgl_get_page(), LV_SCR_LOAD_ANIM_FADE_IN, 200, 0, false);
         lastPage->page_load();
     }
 }

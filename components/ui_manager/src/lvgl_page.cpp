@@ -4,17 +4,32 @@
 #include "lvgl_ui.h"
 #include "lvgl.h"
 
-lvglPage::lvglPage(lvglPageLoadType type, char* name):pageType(type)
+lvglPage::lvglPage(lvglPageType type, char* name):pageType(type)
 {
     pageName = name;
-    lv_obj_t* screen = lv_obj_create(NULL);
+    page = lv_obj_create(NULL);
+
+    lv_obj_set_size(page, lv_disp_get_hor_res(lv_display_get_default()), lv_disp_get_ver_res(lv_display_get_default()));
+    lv_obj_set_style_bg_color(page, lv_color_hex(0xff00ff), 0);
+
+    lv_obj_t* label = lv_label_create(page);
+    lv_obj_set_style_text_font(label, lv_freetype_font_create("../resource/font/NotoSansSC-Regular.ttf",\
+        LV_FREETYPE_FONT_RENDER_MODE_BITMAP, 24, LV_FREETYPE_FONT_STYLE_NORMAL, 400), 0);
+    lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
+    lv_label_set_text(label, name);
+    lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
 
     std::cout<<"lvgl page construct"<<std::endl;
 }
 
-lvglPageLoadType lvglPage::lvgl_get_page_type()
+lvglPageType lvglPage::lvgl_get_page_type()
 {
     return pageType;
+}
+
+lv_obj_t* lvglPage::lvgl_get_page()
+{
+    return page;
 }
 
 std::string& lvglPage::get_page_name()

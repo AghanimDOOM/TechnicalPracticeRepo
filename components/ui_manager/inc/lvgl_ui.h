@@ -10,18 +10,21 @@
 
 #include "ui_page.h"
 #include "ui_manager.h"
+#include "lvgl.h"
 
-enum class lvglPageLoadType{
+enum class lvglPageType{
     MainPage,
     subPage,
 };
 
 class lvglPage : public uiPage{
 private:
-    lvglPageLoadType pageType;
+    lvglPageType pageType;
+    lv_obj_t* page;
 public:
-    lvglPage(lvglPageLoadType type, char* name);
-    lvglPageLoadType lvgl_get_page_type();
+    lvglPage(lvglPageType type, char* name);
+    lvglPageType lvgl_get_page_type();
+    lv_obj_t* lvgl_get_page();
     virtual ~lvglPage();
     virtual std::string& get_page_name();
     virtual void page_load();
