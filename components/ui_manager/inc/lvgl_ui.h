@@ -63,7 +63,7 @@ public:
 #ifdef __cplusplus
 extern "C"{
 #endif
-void lv_linux_disp_init(void);
+void lv_driver_init();
 #ifdef __cplusplus
 }
 #endif

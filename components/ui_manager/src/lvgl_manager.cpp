@@ -45,8 +45,8 @@ void lvglManager::ui_init()
     // lvgl init
     lv_init();
 
-    // lvgl display init
-    lv_linux_disp_init();
+    // lvgl dirver init
+    lv_driver_init();
 
     // 创建第一个窗口
     lv_disp_t* disp = lv_disp_get_default();

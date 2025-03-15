@@ -274,7 +274,7 @@
  *-----------*/
 
 /*Enable the log module*/
-#define LV_USE_LOG 0
+#define LV_USE_LOG 1
 #if LV_USE_LOG
 
     /*How important log should be added:
@@ -1029,7 +1029,7 @@
 #define LV_USE_EVDEV    0
 
 /*Driver for libinput input devices*/
-#define LV_USE_LIBINPUT    0
+#define LV_USE_LIBINPUT    1
 
 #if LV_USE_LIBINPUT
     #define LV_LIBINPUT_BSD    0

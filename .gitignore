@@ -1,5 +1,8 @@
-# 产物
-build/
-
 # vscode
 .vscode/
+
+# 资源
+resource/
+
+# 产物
+build/
