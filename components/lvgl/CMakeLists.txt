@@ -11,6 +11,7 @@ set(LV_CONF_BUILD_DISABLE_EXAMPLES ON)
 include(${CMAKE_CURRENT_LIST_DIR}/lvgl/tests/FindLibDRM.cmake)
 include_directories(${Libdrm_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_LIST_DIR}/inc)
+include_directories(/usr/local/include/freetype2)
 
 add_subdirectory(lvgl)
 
