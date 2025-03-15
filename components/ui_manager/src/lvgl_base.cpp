@@ -35,6 +35,16 @@ void lv_driver_init(void)
 {
     lv_sdl_window_create(800, 480);
 }
+#elif LV_USE_WAYLAND
+void lv_driver_init(void)
+{
+    lv_disp_t* disp = lv_wayland_window_create(800, 480, "desktop", NULL);
+    // lv_indev_t* mouse = lv_wayland_get_pointer(disp);
+    // lv_obj_t* mouse_cursor = lv_image_create(lv_scr_act());
+    // lv_image_set_src(mouse_cursor, &mouse_cursor_icon);
+    // lv_indev_set_cursor(mouse, mouse_cursor);
+    // lv_indev_set_display(mouse, disp);
+}
 #else
 #error Unsupported configuration
 #endif
@@ -43,7 +53,8 @@ void lv_driver_init(void)
 void* lvgl_thread(void* arg)
 {
     while(1){
-        lv_timer_handler();
+        lv_wayland_timer_handler();
+        // lv_timer_handler();
         usleep(5000);
     }
 }
