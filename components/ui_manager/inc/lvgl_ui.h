@@ -35,7 +35,6 @@ public:
 class lvglManager : public uiManager{
 private:
     static std::recursive_mutex lvglMngMutex;
-    static pthread_t tid;
     static bool initFlg;
     static std::list<uiPage*> pageList;
     static std::list<uiPage*> pageStack;
@@ -63,7 +62,7 @@ public:
 #ifdef __cplusplus
 extern "C"{
 #endif
-void lv_driver_init();
+void lvgl_init();
 #ifdef __cplusplus
 }
 #endif

@@ -1,9 +1,14 @@
+#include <pthread.h>
+#include <unistd.h>
+
 #include "lvgl_ui.h"
 #include "lvgl.h"
 
 #ifdef __cplusplus
 extern "C"{
 #endif
+
+static pthread_t tid;
 
 extern lv_image_dsc_t mouse_cursor_icon;
 
@@ -33,6 +38,27 @@ void lv_driver_init(void)
 #else
 #error Unsupported configuration
 #endif
+
+
+void* lvgl_thread(void* arg)
+{
+    while(1){
+        lv_timer_handler();
+        usleep(5000);
+    }
+}
+
+void lvgl_init()
+{
+    // lvgl init
+    lv_init();
+
+    // lvgl dirver init
+    lv_driver_init();
+
+    // 创建事件处理线程
+    pthread_create(&tid,NULL,lvgl_thread,NULL);
+}
 
 #ifdef __cplusplus
 }
