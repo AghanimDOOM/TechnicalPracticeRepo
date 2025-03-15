@@ -2,3 +2,8 @@
     path = components/lvgl/lvgl
     url = https://github.com/lvgl/lvgl.git
     branch = release/v9.2
+
+[submodule "freetype"]
+    path = components/lvgl/lvgl
+    url = https://github.com/freetype/freetype.git
+    branch = VER-2-13-3

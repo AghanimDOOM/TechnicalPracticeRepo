@@ -1,2 +1,3 @@
+add_subdirectory(freetype)
 add_subdirectory(lvgl)
 add_subdirectory(ui_manager)
