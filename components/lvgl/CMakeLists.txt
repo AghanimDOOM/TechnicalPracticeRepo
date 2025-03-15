@@ -14,4 +14,5 @@ include_directories(${CMAKE_CURRENT_LIST_DIR}/inc)
 
 add_subdirectory(lvgl)
 
-target_include_directories(lvgl PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+# 链接lvgl
+target_include_directories(lvgl PUBLIC ${CMAKE_CURRENT_LIST_DIR}/inc ${CMAKE_CURRENT_LIST_DIR}/lvgl)

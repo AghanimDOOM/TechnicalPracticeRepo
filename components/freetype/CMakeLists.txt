@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 project(freetype)
 
-set(CMAKE_C_STANDARD 99)#C99 # lvgl officially support C99 and above
-set(CMAKE_CXX_STANDARD 17)#C17
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# 添加库
+add_library(freetype SHARED IMPORTED)
 
-set(FT_DISABLE_BZIP2 ON)
-set(FT_DISABLE_ZLIB ON)
-set(FT_DISABLE_BROTLI ON)
+# 设置库文件路径
+set_target_properties(freetype PROPERTIES
+    IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/lib/libfreetype.so
+)
 
-add_subdirectory(freetype)
-
-target_include_directories(freetype PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+# 设置头文件路径
+target_include_directories(freetype INTERFACE ${CMAKE_CURRENT_LIST_DIR}/inc)
