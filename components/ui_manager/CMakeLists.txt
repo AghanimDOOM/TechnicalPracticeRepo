@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.10)
-project(ui_manager)
-
 # 找到所有的源文件并将其添加到库
 file(GLOB SRC_FILES ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp)
 

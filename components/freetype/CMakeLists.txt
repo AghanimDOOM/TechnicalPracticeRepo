@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.10)
-project(freetype)
-
 # 添加共享库目标
 add_library(freetype SHARED IMPORTED)
 
