@@ -53,8 +53,8 @@ void lv_driver_init(void)
 void* lvgl_thread(void* arg)
 {
     while(1){
-        lv_wayland_timer_handler();
-        // lv_timer_handler();
+        // lv_wayland_timer_handler();
+        lv_timer_handler();
         usleep(5000);
     }
 }

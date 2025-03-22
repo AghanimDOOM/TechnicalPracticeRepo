@@ -960,12 +960,12 @@
  *==================*/
 
 /*Use SDL to open window on PC and handle mouse and keyboard*/
-#define LV_USE_SDL              0
+#define LV_USE_SDL              1
 #if LV_USE_SDL
     #define LV_SDL_INCLUDE_PATH     <SDL2/SDL.h>
     #define LV_SDL_RENDER_MODE      LV_DISPLAY_RENDER_MODE_DIRECT   /*LV_DISPLAY_RENDER_MODE_DIRECT is recommended for best performance*/
     #define LV_SDL_BUF_COUNT        1    /*1 or 2*/
-    #define LV_SDL_ACCELERATED      1    /*1: Use hardware acceleration*/
+    #define LV_SDL_ACCELERATED      0    /*1: Use hardware acceleration*/
     #define LV_SDL_FULLSCREEN       0    /*1: Make the window full screen by default*/
     #define LV_SDL_DIRECT_EXIT      1    /*1: Exit the application when all SDL windows are closed*/
     #define LV_SDL_MOUSEWHEEL_MODE  LV_SDL_MOUSEWHEEL_MODE_ENCODER  /*LV_SDL_MOUSEWHEEL_MODE_ENCODER/CROWN*/
@@ -983,7 +983,7 @@
 #endif
 
 /*Use Wayland to open a window and handle input on Linux or BSD desktops */
-#define LV_USE_WAYLAND          1
+#define LV_USE_WAYLAND          0
 #if LV_USE_WAYLAND
     #define LV_WAYLAND_WINDOW_DECORATIONS   0    /*Draw client side window decorations only necessary on Mutter/GNOME*/
     #define LV_WAYLAND_WL_SHELL             1    /*Use the legacy wl_shell protocol instead of the default XDG shell*/

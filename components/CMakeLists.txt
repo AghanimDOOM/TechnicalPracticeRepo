@@ -1,4 +1,4 @@
-# include_directories(${CMAKE_CURRENT_LIST_DIR}/freetype/inc)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/freetype/inc)
 include_directories(${CMAKE_CURRENT_LIST_DIR}/lvgl/inc)
 include_directories(${CMAKE_CURRENT_LIST_DIR}/lvgl/lvgl)
 include_directories(${CMAKE_CURRENT_LIST_DIR}/ui_manager/inc)
