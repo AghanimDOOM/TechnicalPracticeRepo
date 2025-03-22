@@ -65,6 +65,8 @@ public:
 #ifdef __cplusplus
 extern "C"{
 #endif
+void lvgl_mutex_lock();
+void lvgl_mutex_unlock();
 void lvgl_init();
 #ifdef __cplusplus
 }

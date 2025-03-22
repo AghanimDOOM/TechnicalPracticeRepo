@@ -9,6 +9,7 @@ extern "C"{
 #endif
 
 static pthread_t tid;
+static pthread_mutex_t lvglMutex;
 
 extern lv_image_dsc_t mouse_cursor_icon;
 
@@ -49,23 +50,40 @@ void lv_driver_init(void)
 #error Unsupported configuration
 #endif
 
+void lvgl_mutex_lock(void)
+{
+    pthread_mutex_lock(&lvglMutex);
+}
 
-void* lvgl_thread(void* arg)
+void lvgl_mutex_unlock(void)
+{
+    pthread_mutex_unlock(&lvglMutex);
+}
+
+static void* lvgl_thread(void* arg)
 {
     while(1){
+        lvgl_mutex_lock();
         // lv_wayland_timer_handler();
         lv_timer_handler();
+        lvgl_mutex_unlock();
         usleep(5000);
     }
 }
 
 void lvgl_init()
 {
+    pthread_mutexattr_t lvglMutexAttr;
     // lvgl init
     lv_init();
 
     // lvgl dirver init
     lv_driver_init();
+
+    // lvgl mutex
+    pthread_mutexattr_init(&lvglMutexAttr);
+    pthread_mutexattr_settype(&lvglMutexAttr, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutex_init(&lvglMutex, &lvglMutexAttr);
 
     // 创建事件处理线程
     pthread_create(&tid,NULL,lvgl_thread,NULL);
