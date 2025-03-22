@@ -34,7 +34,10 @@ void lv_driver_init(void)
 #elif LV_USE_SDL
 void lv_driver_init(void)
 {
-    lv_sdl_window_create(800, 480);
+    lv_display_t* display = lv_sdl_window_create(800, 480);
+    lv_indev_t* mouse = lv_sdl_mouse_create();
+
+    lv_indev_set_display(mouse, display);
 }
 #elif LV_USE_WAYLAND
 void lv_driver_init(void)
